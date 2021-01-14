@@ -1,0 +1,53 @@
+package Clases;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Metodos 
+{
+    int aux;
+    List<Integer> Numeros = new ArrayList<Integer>();
+    
+    public void Insertar(int Numero)
+    {
+        Numeros.add(Numero);
+    }
+    
+    public void Mostrar()
+    {
+        System.out.println("-----------Datos Ordenados-----------");
+        System.out.println(Numeros);
+    }
+    
+    public void Radix()
+    {
+        int x, i, j;
+        for (x=Integer.SIZE-1; x >= 0; x--)
+        {
+            List<Integer> Aux = new ArrayList<Integer>();
+            for(int a=0; a<Numeros.size();a++)
+            {
+                Aux.add(0);
+            }
+            j=0;
+            for (i = 0; i<Numeros.size(); i++)
+            {
+                boolean mover = Numeros.get(i) << x >=0;
+                if (x==0 ? !mover:mover)
+                {
+                    Aux.set(j, Numeros.get(i));
+                    j++;
+                }
+                else
+                {
+                    Numeros.set(i-j, Numeros.get(i));
+                }
+            }
+            for(i=j; i<Aux.size(); i++)
+            {
+                Aux.set(i, Numeros.get(i-j));
+            }
+            Numeros=Aux;
+        }
+    }
+}
